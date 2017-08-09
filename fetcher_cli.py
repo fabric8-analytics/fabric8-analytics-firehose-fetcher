@@ -2,7 +2,6 @@
 
 import click
 
-
 from f8a_firehose_fetcher.firehose_fetcher import run_liveness, FirehoseFetcher
 
 
@@ -15,7 +14,3 @@ def cli(liveness):
     else:
         fetcher = FirehoseFetcher()
         fetcher.run()
-
-
-
-
