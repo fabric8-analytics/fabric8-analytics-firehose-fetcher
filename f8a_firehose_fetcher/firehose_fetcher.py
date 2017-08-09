@@ -9,7 +9,6 @@ import sys
 import signal
 import psutil
 import time
-from functools import partial
 
 from selinon import run_flow
 from f8a_worker.setup_celery import init_celery, init_selinon
@@ -18,7 +17,7 @@ from .defaults import STREAM_URL, ENABLE_SCHEDULING, PROBE_FILE_LOCATION
 logger = logging.getLogger(__name__)
 
 
-def handler(http_stream, signum, frame):
+def handler(signum, frame):
     logger.warning("Liveness probe - trying to schedule the livenessFlow")
     run_flow('livenessFlow', [None])
 
@@ -80,7 +79,7 @@ class FirehoseFetcher(object):
             response.raise_for_status()
         self.log.debug("Connection with '%s' established", STREAM_URL)
 
-        signal.signal(signal.SIGUSR1, partial(handler, response))
+        signal.signal(signal.SIGUSR1, handler)
         self.log.info("Registered signal handler for liveness probe")
 
         client = sseclient.SSEClient(response)
