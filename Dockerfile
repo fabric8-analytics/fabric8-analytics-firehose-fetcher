@@ -17,10 +17,6 @@ RUN pushd /tmp/f8a_firehose-fetcher/ &&\
   popd &&\
   rm -rf /tmp/firehose_fetcher
 
-# A temporary hack to keep Selinon up2date
-COPY hack/update_selinon.sh /tmp/
-RUN sh /tmp/update_selinon.sh
-
 COPY hack/run_firehose_fetcher.sh /usr/bin/
 
 USER coreapi

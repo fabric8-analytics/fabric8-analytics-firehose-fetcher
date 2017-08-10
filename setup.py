@@ -12,7 +12,7 @@ def get_requirements():
     return list(line for line in lines if not line.startswith('#'))
 
 setup(
-    name='fabric8_analytics_firehose_fetcher',
+    name='fabric8-analytics-firehose-fetcher',
     version='0.1',
     packages=find_packages(),
     install_requires=get_requirements(),
