@@ -19,7 +19,11 @@ logger = logging.getLogger(__name__)
 
 def handler(signum, frame):
     logger.warning("Liveness probe - trying to schedule the livenessFlow")
-    run_flow('livenessFlow', [None])
+    if ENABLE_SCHEDULING:
+        run_flow('livenessFlow', [None])
+    else:
+        logger.warning("Liveness probe - livenessFlow"
+                       " did not run since selinon is not initialized")
 
     basedir = os.path.dirname(PROBE_FILE_LOCATION)
     if not os.path.exists(basedir):
