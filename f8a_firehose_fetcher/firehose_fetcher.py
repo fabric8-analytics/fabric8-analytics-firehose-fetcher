@@ -50,8 +50,14 @@ class FirehoseFetcher(object):
 
     def __init__(self):
         self.log = logging.getLogger(__name__)
-        init_celery(result_backend=False)
-        init_selinon()
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        logging_handler = logging.StreamHandler(sys.stdout)
+        logging_handler.setFormatter(formatter)
+        self.log.addHandler(logging_handler)
+
+        if ENABLE_SCHEDULING:
+            init_celery(result_backend=False)
+            init_selinon()
 
     def analyses_selinon_flow(self, name, version, ecosystem):
         """Run Selinon flow for analyses.
