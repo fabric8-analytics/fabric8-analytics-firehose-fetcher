@@ -4,7 +4,7 @@
 def commitId
 node('docker') {
 
-    def image = docker.image('fabric8-analytics/firehose-fetcher')
+    def image = docker.image('fabric8-analytics/f8a-firehose-fetcher')
 
     stage('Checkout') {
         checkout scm
@@ -33,7 +33,7 @@ node('docker') {
 if (env.BRANCH_NAME == 'master') {
     node('oc') {
 
-        def dc = 'firehose-fetcher'
+        def dc = 'f8a-firehose-fetcher'
         lock('f8a_staging') {
 
             stage('Deploy - Stage') {
