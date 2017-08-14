@@ -19,11 +19,6 @@ node('docker') {
         docker.build(image.id, '--pull --no-cache .')
     }
 
-    stage('Unit Tests') {
-        timeout(30) {
-            echo 'No tests!'
-        }
-    }
 
     if (env.BRANCH_NAME == 'master') {
         stage('Push Images') {
