@@ -45,27 +45,6 @@ if (env.BRANCH_NAME == 'master') {
                 unstash 'template'
                 sh "oc --context=rh-idev process -v IMAGE_TAG=${commitId} -f template.yaml | oc --context=rh-idev apply -f -"
             }
-
-            stage('End-to-End Tests') {
-                def result
-                try {
-                    timeout(10) {
-                        sleep 5
-                        sh "oc logs -f dc/${dc}"
-                        def e2e = build job: 'fabric8-analytics-common-master', wait: true, propagate: false, parameters: [booleanParam(name: 'runOnOpenShift', value: true)]
-                        result = e2e.result
-                    }
-                } catch (err) {
-                    error "Error: ${err}"
-                } finally {
-                    if (!result?.equals('SUCCESS')) {
-                        sh "oc rollback ${dc}"
-                        error 'End-to-End tests failed.'
-                    } else {
-                        echo 'End-to-End tests passed.'
-                    }
-                }
-            }
         }
     }
 }
