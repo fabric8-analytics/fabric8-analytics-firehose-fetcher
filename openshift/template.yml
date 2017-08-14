@@ -53,11 +53,6 @@ objects:
               secretKeyRef:
                 name: aws
                 key: s3-secret-access-key
-          - name: BAYESIAN_SYNC_S3
-            valueFrom:
-              secretKeyRef:
-                name: aws
-                key: sync-s3
           # this won't get used if running with SQS
           - name: RABBITMQ_SERVICE_SERVICE_HOST
             value: bayesian-broker
@@ -88,14 +83,14 @@ objects:
               - cli
               - "--liveness"
             initialDelaySeconds: 15
-            timeoutSeconds: 1
+            timeoutSeconds: 20
           readinessProbe:
             exec:
               command:
               - cli
               - "--liveness"
             initialDelaySeconds: 15
-            timeoutSeconds: 1
+            timeoutSeconds: 20
           resources:
             requests:
               memory: "256Mi"
@@ -113,10 +108,10 @@ objects:
     name: f8a-firehose-fetcher
   spec:
     ports:
-    - name: "5432"
-      port: 5432
+    - name: "35000"
+      port: 35000
       protocol: TCP
-      targetPort: 5432
+      targetPort: 35000
     selector:
       service: f8a-firehose-fetcher
 
