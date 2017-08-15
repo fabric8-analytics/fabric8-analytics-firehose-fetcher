@@ -82,20 +82,22 @@ objects:
               command:
               - cli
               - "--liveness"
-            initialDelaySeconds: 15
-            timeoutSeconds: 20
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 30
           readinessProbe:
             exec:
               command:
               - cli
               - "--liveness"
-            initialDelaySeconds: 15
-            timeoutSeconds: 20
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            timeoutSeconds: 30
           resources:
             requests:
-              memory: "256Mi"
+              memory: "128Mi"
             limits:
-              memory: "1024Mi"
+              memory: "256Mi"
         restartPolicy: Always
     test: false
     triggers:
