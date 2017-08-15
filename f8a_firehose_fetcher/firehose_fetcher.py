@@ -18,11 +18,11 @@ logger = logging.getLogger(__name__)
 
 
 def handler(signum, frame):
-    logger.warning("Liveness probe - trying to schedule the livenessFlow")
+    logger.debug("Running Liveness Probe")
     if ENABLE_SCHEDULING:
         run_flow('livenessFlow', [None])
     else:
-        logger.warning("Liveness probe - livenessFlow"
+        logger.debug("Liveness probe - livenessFlow"
                        " did not run since selinon is not initialized")
 
     basedir = os.path.dirname(PROBE_FILE_LOCATION)
@@ -30,10 +30,9 @@ def handler(signum, frame):
         os.makedirs(basedir)
 
     with open(PROBE_FILE_LOCATION, 'a'):
-        logger.warning("Liveness probe - created file")
         os.utime(PROBE_FILE_LOCATION, None)
 
-    logger.warning("Liveness probe - finished")
+    logger.debug("Liveness probe - finished")
 
 
 def run_liveness():
@@ -58,6 +57,7 @@ class FirehoseFetcher(object):
         logging_handler = logging.StreamHandler(sys.stdout)
         logging_handler.setFormatter(formatter)
         self.log.addHandler(logging_handler)
+        self.log.level = logging.INFO
 
         if ENABLE_SCHEDULING:
             init_celery(result_backend=False)
@@ -85,7 +85,7 @@ class FirehoseFetcher(object):
 
         response = requests.get(STREAM_URL, stream=True, timeout=30)
         if response.status_code != requests.codes.ok:
-            self.log.warning("Unable to retrieve connection with '%s'", STREAM_URL)
+            self.log.error("Unable to retrieve connection with '%s'", STREAM_URL)
             response.raise_for_status()
         self.log.debug("Connection with '%s' established", STREAM_URL)
 
@@ -103,7 +103,7 @@ class FirehoseFetcher(object):
                 self.log.debug("Event is missing one of required keys, skipping it")
                 continue
 
-            self.log.warning("Received event for package '%s' from ecosystem '%s'", name, ecosystem)
+            self.log.info("Received event for package '%s' from ecosystem '%s'", name, ecosystem)
             # For current set of ecosystems (nuget, pypi, maven and npm) calling lower is sufficient
             if ecosystem in {'nuget', 'pypi', 'maven', 'npm'} and ENABLE_SCHEDULING:
                 self.analyses_selinon_flow(name, version, ecosystem)
