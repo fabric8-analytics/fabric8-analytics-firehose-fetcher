@@ -100,10 +100,10 @@ class FirehoseFetcher(object):
                 version = data['version']
                 ecosystem = data['platform'].lower()
             except KeyError:
-                self.log.debug("Event is missing one of required keys, skipping it")
+                self.log.exception("Event is missing one of required keys, skipping it: %s", data)
                 continue
 
-            self.log.info("Received event for package '%s' from ecosystem '%s'", name, ecosystem)
+            self.log.info("Received event for EPV: '%s':'%s':'%s'", ecosystem, name, version)
             # For current set of ecosystems (nuget, pypi, maven and npm) calling lower is sufficient
             if ecosystem in {'nuget', 'pypi', 'maven', 'npm'} and ENABLE_SCHEDULING:
                 self.analyses_selinon_flow(name, version, ecosystem)
