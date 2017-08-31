@@ -1,6 +1,4 @@
 Feature: Basic functionality
-
   Scenario: Obtain event and then check whether it was logged
      Given Container is running
-      when Got three Firehose events
-      then Check container logs for received events
+      Then Check container logs for "3" received events
