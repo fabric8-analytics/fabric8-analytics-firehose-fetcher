@@ -1,5 +1,5 @@
 REGISTRY?=registry.devshift.net
-REPOSITORY?=f8a-analytics/f8a-firehose-fetcher
+REPOSITORY?=fabric8-analytics/f8a-firehose-fetcher
 DEFAULT_TAG=latest
 
 .PHONY: all docker-build fast-docker-build test get-image-name get-image-repository
