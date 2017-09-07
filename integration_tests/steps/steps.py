@@ -1,5 +1,4 @@
 from behave import *
-import bs4
 
 
 @given('Container is running')
