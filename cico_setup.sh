@@ -12,7 +12,7 @@ load_jenkins_vars() {
 
 prep() {
     yum -y update
-    yum -y install docker git
+    yum -y install docker git python3 python3-virtualenv
     systemctl start docker
 }
 
