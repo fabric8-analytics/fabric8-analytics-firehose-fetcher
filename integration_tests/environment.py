@@ -2,9 +2,9 @@ import docker
 
 
 def before_all(context):
-    client = docker.from_env()
+    client = docker.from_env(version="auto")
     context.firehose_container = client.containers.run(
-        "registry.devshift.net/fabric8-analytics/firehose-fetcher",
+        "registry.devshift.net/fabric8-analytics/f8a-firehose-fetcher",
         environment=["ENABLE_SCHEDULING=0"],
         detach=True
     )
