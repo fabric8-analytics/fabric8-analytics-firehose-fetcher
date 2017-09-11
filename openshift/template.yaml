@@ -134,7 +134,7 @@ parameters:
   displayName: Enable scheduling variable
   required: true
   name: ENABLE_SCHEDULING
-  value: 0
+  value: "0"
 
 - description: Docker image to use
   displayName: Docker image
