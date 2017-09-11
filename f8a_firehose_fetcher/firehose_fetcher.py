@@ -77,7 +77,7 @@ class FirehoseFetcher(object):
             'version': version
         }
 
-        self.log.debug("Scheduling Selinon flow '%s' with node_args: '%s'", 'bayesianFlow', node_args)
+        self.log.info("Scheduling Selinon flow '%s' with node_args: '%s'", 'bayesianFlow', node_args)
         return run_flow('bayesianFlow', node_args)
 
     def run(self):
