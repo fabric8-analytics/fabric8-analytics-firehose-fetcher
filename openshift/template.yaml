@@ -74,7 +74,7 @@ objects:
                 name: coreapi-postgres
                 key: password
           - name: ENABLE_SCHEDULING
-            value: '0'
+            value: ${ENABLE_SCHEDULING}
           image: "${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${IMAGE_TAG}"
           name: f8a-firehose-fetcher
           livenessProbe:
@@ -129,6 +129,12 @@ parameters:
   required: true
   name: DOCKER_REGISTRY
   value: "registry.devshift.net"
+
+- description: Variable which defines whether new analysis will be scheduled
+  displayName: Enable scheduling variable
+  required: true
+  name: ENABLE_SCHEDULING
+  value: 0
 
 - description: Docker image to use
   displayName: Docker image
