@@ -130,7 +130,7 @@ parameters:
   name: DOCKER_REGISTRY
   value: "registry.devshift.net"
 
-  - description: Variable which defines whether new analysis will be scheduled
+- description: Variable which defines whether new analysis will be scheduled
   displayName: Enable scheduling variable
   required: true
   name: ENABLE_SCHEDULING
