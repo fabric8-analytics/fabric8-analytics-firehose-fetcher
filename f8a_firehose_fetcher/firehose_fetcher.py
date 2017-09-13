@@ -74,7 +74,8 @@ class FirehoseFetcher(object):
         node_args = {
             'ecosystem': ecosystem,
             'name': name,
-            'version': version
+            'version': version,
+            'recursive_limit': 0
         }
 
         self.log.info("Scheduling Selinon flow '%s' with node_args: '%s'", 'bayesianFlow', node_args)
