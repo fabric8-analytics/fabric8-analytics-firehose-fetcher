@@ -57,7 +57,7 @@ class FirehoseFetcher(object):
         logging_handler = logging.StreamHandler(sys.stdout)
         logging_handler.setFormatter(formatter)
         self.log.addHandler(logging_handler)
-        self.log.level = logging.INFO
+        self.log.level = logging.DEBUG
 
         if ENABLE_SCHEDULING:
             init_celery(result_backend=False)
