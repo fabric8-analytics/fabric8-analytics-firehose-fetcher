@@ -43,7 +43,7 @@ def run_liveness():
     for pid in psutil.process_iter():
         if pid.pid == 1:
             pid.send_signal(signal.SIGUSR1)
-            time.sleep(5)
+            time.sleep(10)
 
     sys.exit(0 if os.path.isfile(PROBE_FILE_LOCATION) else 1)
 
