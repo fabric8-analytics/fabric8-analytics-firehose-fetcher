@@ -8,5 +8,5 @@ build_image
 
 push_image
 
-./runtest.sh
+#./runtest.sh
 
