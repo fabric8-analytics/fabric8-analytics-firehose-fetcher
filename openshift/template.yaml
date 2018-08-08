@@ -124,7 +124,7 @@ parameters:
   displayName: Firehose Stream URL
   required: true
   name: FIREHOSE_STREAM_URL
-  value: "http://firehose.libraries.io/events"
+  value: "https://firehose.libraries.io/events"
 
 - description: Docker registry where the image is
   displayName: Docker registry
