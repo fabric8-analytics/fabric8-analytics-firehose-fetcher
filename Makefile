@@ -15,9 +15,11 @@ all: fast-docker-build
 
 docker-build:
 	docker build --no-cache -t $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) -f $(DOCKERFILE) .
+	docker tag $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) $(REPOSITORY)
 
 fast-docker-build:
 	docker build -t $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) -f $(DOCKERFILE) .
+	docker tag $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) $(REPOSITORY)
 
 test: fast-docker-build
 	./runtest.sh
