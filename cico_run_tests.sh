@@ -6,6 +6,7 @@ set -ex
 
 build_image
 
+push_image
+
 ./runtest.sh
 
-push_image
