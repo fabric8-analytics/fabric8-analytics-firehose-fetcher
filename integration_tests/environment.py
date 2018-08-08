@@ -11,4 +11,8 @@ def before_all(context):
 
 
 def after_all(context):
-    context.firehose_container.kill()
+    try:
+        context.firehose_container.kill()
+    except docker.errors.APIError:
+        print(context.firehose_container.logs())
+        raise
