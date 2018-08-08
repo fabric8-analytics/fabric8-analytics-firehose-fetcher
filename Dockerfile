@@ -2,7 +2,7 @@ FROM registry.centos.org/centos/centos:7
 MAINTAINER Pavel Kajaba <pavel@redhat.com>
 
 ENV LANG=en_US.UTF-8 \
-    F8A_WORKER_VERSION=dce0539
+    F8A_WORKER_VERSION=30100bf
 
 RUN useradd coreapi
 
