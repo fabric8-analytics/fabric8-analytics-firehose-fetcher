@@ -15,11 +15,11 @@ all: fast-docker-build
 
 docker-build:
 	docker build --no-cache -t $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) -f $(DOCKERFILE) .
-	docker tag $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) $(REPOSITORY)
+	docker tag $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) f8a-firehose-fetcher-tests
 
 fast-docker-build:
 	docker build -t $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) -f $(DOCKERFILE) .
-	docker tag $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) $(REPOSITORY)
+	docker tag $(REGISTRY)/$(REPOSITORY):$(DEFAULT_TAG) f8a-firehose-fetcher-tests
 
 test: fast-docker-build
 	./runtest.sh

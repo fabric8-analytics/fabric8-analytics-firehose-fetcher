@@ -4,7 +4,7 @@ import docker
 def before_all(context):
     client = docker.from_env(version="auto")
     context.firehose_container = client.containers.run(
-        "openshiftio/fabric8-analytics-f8a-firehose-fetcher",
+        "f8a-firehose-fetcher-tests",
         environment=["ENABLE_SCHEDULING=0"],
         detach=True
     )
