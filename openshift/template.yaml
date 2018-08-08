@@ -14,7 +14,7 @@ objects:
       service: f8a-firehose-fetcher
     name: f8a-firehose-fetcher
   spec:
-    replicas: 1
+    replicas: ${{REPLICAS}}
     selector:
       service: f8a-firehose-fetcher
     template:
@@ -149,3 +149,10 @@ parameters:
   required: true
   name: IMAGE_TAG
   value: "latest"  # image-tag
+
+- description: Number of deployment replicas
+  displayName: Number of deployment replicas
+  required: true
+  name: REPLICAS
+  value: "1"
+
