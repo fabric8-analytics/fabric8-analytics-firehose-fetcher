@@ -4,15 +4,18 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
+backports.ssl-match-hostname==3.5.0.1  # via docker
 behave==1.2.5
 certifi==2017.7.27.1      # via requests
 chardet==3.0.4            # via requests
 docker-pycreds==0.2.1     # via docker
 docker==2.5.1
+enum34==1.1.6             # via parse-type
 idna==2.6                 # via requests
+ipaddress==1.0.22         # via docker
 parse-type==0.3.4         # via behave
 parse==1.8.2              # via behave, parse-type
 requests==2.18.4          # via docker
 six==1.10.0               # via behave, docker, docker-pycreds, parse-type, websocket-client
-urllib3==1.22             # via requests
+urllib3==1.23             # via requests
 websocket-client==0.44.0  # via docker
