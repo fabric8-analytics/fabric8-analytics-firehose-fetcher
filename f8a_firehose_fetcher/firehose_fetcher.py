@@ -84,16 +84,12 @@ class FirehoseFetcher(object):
     def run(self):
         self.log.info("Initializing Server Side Events client")
 
-        response = requests.get(STREAM_URL, stream=True, timeout=30)
-        if response.status_code != requests.codes.ok:
-            self.log.error("Unable to retrieve connection with '%s'", STREAM_URL)
-            response.raise_for_status()
         self.log.debug("Connection with '%s' established", STREAM_URL)
 
         signal.signal(signal.SIGUSR1, handler)
         self.log.info("Registered signal handler for liveness probe")
 
-        client = sseclient.SSEClient(response)
+        client = sseclient.SSEClient(STREAM_URL)
         for event in client.events():
             data = json.loads(event.data)
             try:
